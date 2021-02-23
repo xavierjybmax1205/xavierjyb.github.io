@@ -1,0 +1,104 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+
+      function isMobile(){
+        let UserAgent = navigator.userAgent;
+        if (UserAgent.match(/iPhone|iPod|Android|Windows CE|BlackBerry|Symbian|Windows Phone|webOS|Opera Mini|Opera Mobi|POLARIS|IEMobile|lgtelecom|nokia|SonyEricsson/i) != null || UserAgent.match(/LG|SAMSUNG|Samsung/) != null)  return true;
+        else return false;
+      }
+
+      $(document).ready(function () {
+        function getUrlVars() {
+          var vars = [],
+            hash;
+          var hashes = window.location.href
+            .slice(window.location.href.indexOf("?") + 1)
+            .split("&");
+          for (var i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split("=");
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+          }
+          return vars;
+        }
+
+        vars = getUrlVars();
+
+        if (vars) {
+          $("input[name=brandcode]").val(vars.code);
+          $("input[name=branduid]").val(vars.id);
+          $("input[id=size]").val(vars.size);
+          $("input[id=index]").val(vars.index);
+          if(isMobile()) {
+            $("#form").attr(
+              "action",
+              "http://www.atmos-seoul.com/m/basket.html"
+            );
+          }
+          else {
+            $("#form").attr(
+              "action",
+              "http://www.atmos-seoul.com/shop/basket.html"
+            );
+          }
+          $("#form").submit();
+        }
+      
+      });
+    </script>
+  </head>
+
+  <body style="text-align: center;">
+    <h1>AmnotifyKR - ATMOS</h1>
+    <img src="logo.png">
+    <form
+      name="form"
+      id="form"
+      method="post"
+      action="http://www.atmos-seoul.com/shop/basket.html"
+    >
+      <input hidden name="collbasket" value="" />
+      <input hidden name="totalnum" value="3" />
+      <input hidden name="spcode" value="" />
+      <input hidden name="spcode2" value="" />
+      <input hidden name="quantity" value="" />
+      <input hidden name="collbrandcode" value="" />
+      <input hidden name="aramount" value="" />
+      <input hidden name="arspcode" value="" />
+      <input hidden name="arspcode2" value="" />
+      <input hidden name="optionindex" value="" />
+      <input hidden name="alluid" value="" />
+      <input hidden name="alloptiontype" value="" />
+      <input hidden name="aropts" value="" />
+      <input hidden name="checktype" value="" />
+      <input hidden name="ordertype" value="baro|parent.|layer" />
+      <input hidden name="brandcode" value="001003003027" />
+      <input hidden name="branduid" value="2112873" />
+      <input hidden name="xcode" value="003" />
+      <input hidden name="mcode" value="001" />
+      <input hidden name="typep" value="Y" />
+      <input hidden name="alluid" value="" />
+      <input hidden name="alloptiontype" value="" />
+      <input hidden name="aropts" value="" />
+      <input hidden name="allpackageuid" value="" />
+      <input hidden name="cart_free" value="" />
+      <input hidden name="collbasket_type" value="Y" />
+      <input hidden name="opt_type" value="PS" />
+      <input hidden name="amount[]" value="1" />
+      <input hidden name="option[basic][0][0][opt_id]" value="1" />
+      <input
+        hidden
+        id="size"
+        name="option[basic][0][0][opt_value]"
+        value="255"
+      />
+      <input hidden name="option[basic][0][0][opt_stock]" value="1" />
+      <input hidden id="index" name="option[basic][0][0][sto_id]" value="2" />
+    </form>
+  </body>
+</html>
